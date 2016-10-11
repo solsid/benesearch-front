@@ -17,3 +17,9 @@ _temp
 !typings/typings.d.ts
 !wallaby.js
 !server.js
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
