@@ -1,7 +1,26 @@
 import { Component } from '@angular/core';
 
 @Component({
+    moduleId: module.id,
     selector: 'my-app',
-    template: '<h1>My First Angular 2 App</h1>'
+    templateUrl: 'app.component.html'
 })
-export class AppComponent { }
+export class AppComponent {
+    volunteers = [
+        {
+            name : 'John Doe',
+            team : 'Backline',
+            rights : 'A',
+        },
+        {
+            name : 'Jane Bla',
+            team : 'Propreté',
+            rights : 'T M',
+        },
+        {
+            name : 'Martin Dupont',
+            team : 'Rappro boisson',
+            rights : 'P S M',
+        }
+    ];
+}

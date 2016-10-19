@@ -1,0 +1,7 @@
+<h1>Les Bénévoles SolSid</h1>
+<div *ngFor="let volunteer of volunteers">
+    <input type="checkbox" name="volunteer">
+    <div><span>Nom:</span><span>{{volunteer.name}}</span></div>
+    <div><span>Equipe:</span><span>{{volunteer.team}}</span></div>
+    <div><span>Autorisations:</span><span>{{volunteer.rights}}</span></div>
+</div>
