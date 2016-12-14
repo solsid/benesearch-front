@@ -1,0 +1,52 @@
+.volunteers {
+    display: flex;
+    flex-direction: column;
+}
+
+.volunteers li {
+    list-style: none;
+    display: flex;
+    padding-bottom: 20px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 1 5%;
+}
+
+.photoWrapper {
+    display: flex;
+    justify-content: center;
+    flex: 0 1 8%;
+}
+
+.photo {
+    max-height: 100px;
+    max-width: 100px;
+}
+
+.profileText {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.row {
+    display: flex;
+    flex: 1;
+}
+
+.label, .value {
+    display: flex;
+    align-items: center;
+}
+
+.label {
+    flex: 0 1 10%;
+}
+
+.value {
+    flex: 1;
+}
