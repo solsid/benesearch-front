@@ -1,15 +1,14 @@
+import { TestPage } from './app.po';
 
-describe('QuickStart E2E Tests', function () {
+describe('test App', () => {
+  let page: TestPage;
 
-  let expectedMsg = 'My First Angular 2 App';
-
-
-  beforeEach(function () {
-    browser.get('');
+  beforeEach(() => {
+    page = new TestPage();
   });
 
-  it('should display: ' + expectedMsg, function () {
-    expect(element(by.css('h1')).getText()).toEqual(expectedMsg);
+  it('should display message saying app works', () => {
+    page.navigateTo();
+    expect(page.getParagraphText()).toEqual('app works!');
   });
-
 });
