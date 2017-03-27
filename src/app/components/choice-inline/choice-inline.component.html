@@ -1,0 +1,11 @@
+<div class="wrapper">
+    <div
+    *ngFor="let choice of choices; let last = last; let first = first"
+    (click)="onChoiceSelected(choice)"
+    class="unit
+    {{last? ' last' : ''}}
+    {{first? ' first' : ''}}
+    {{choice.active? ' active' : ''}}">
+        {{choice.label}}
+    </div>
+</div>
