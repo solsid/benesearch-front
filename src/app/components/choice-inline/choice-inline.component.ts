@@ -11,10 +11,12 @@ export class ChoiceInlineComponent {
 
     @Input() choices: ChoiceElement[];
     @Input() singleChoice: boolean;
+    @Output() onSelect = new EventEmitter();
 
     constructor() {
     }
 
-    public onChoiceSelected = (choice: ChoiceElement) => {
+    public select = (choice: ChoiceElement) => {
+        this.onSelect.emit(choice);
     }
 }
