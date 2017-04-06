@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { select } from '@angular-redux/store';
 import { FilterState, AppState } from '../../store';
+import { bossesSelector } from '../../store/filter/filter.selectors';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { FilterActions } from '../../store/filter/filter.actions';
 import { BossChoices } from './boss-choices';
@@ -14,7 +15,7 @@ export class FilterContainer implements OnInit, OnDestroy {
 
   public bossChoicesArray: ChoiceElement[];
 
-  @select((state: AppState) => state.filterState.boss) public bossChoicesObservable: Observable<BossChoices>;
+  @select(bossesSelector) public bossChoicesObservable: Observable<BossChoices>;
   private bossChoicesSubscription: Subscription;
 
   constructor(private filterActions: FilterActions) {
