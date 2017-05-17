@@ -7,6 +7,7 @@ import { ChoiceElement } from '../../components/choice-inline/choice-element';
 
 export const defaultFilterState: FilterState = {
     boss: {
+        label: 'default',
         includeBosses: {
             label: 'Oui',
             active: true
@@ -30,6 +31,7 @@ export const filterReducer: Reducer<FilterState> = (
                 for (const i in newState.boss) {
                     if (newState.boss.hasOwnProperty(i)) {
                         if (newState.boss[i].label === choice.label) { // Change state of the right boss choice
+                            newState.boss.label = String(choice.label);
                             newState.boss[i].active = !newState.boss[i].active;
                         }
                     }
