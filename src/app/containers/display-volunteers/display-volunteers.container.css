@@ -1,0 +1,20 @@
+.displayVolunteers {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    padding: 50px;
+    max-width: 1200px;
+    min-width: 800px;
+}
+
+.modesWrapper {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.badgeWrapper {
+    display: flex;
+    justify-content: space-around;
+}

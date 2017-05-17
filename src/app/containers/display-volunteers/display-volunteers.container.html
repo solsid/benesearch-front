@@ -1,3 +1,9 @@
-<choice-inline (onSelect)="switchDisplayMode($event)" [choices]='displayModesArray'></choice-inline>
-<list-volunteers *ngIf="displayModesArray[0].active === true"></list-volunteers>
-<badge *ngIf="displayModesArray[1].active === true"></badge>
+<div class='displayVolunteers'>
+    <div class='modesWrapper'>
+        <choice-inline (onSelect)="switchDisplayMode($event)" [choices]='displayModesArray'></choice-inline>
+    </div>
+    <list-volunteers *ngIf="displayModesArray[0].active === true"></list-volunteers>
+    <div class='badgeWrapper'>
+        <badge *ngIf="displayModesArray[1].active === true"></badge>
+    </div>
+</div>
