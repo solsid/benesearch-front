@@ -1,0 +1,65 @@
+.badge {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: space-around;
+    position: relative;
+    border: 2px solid lightgrey;
+    border-radius: 20px;
+    width: 500px;
+    height: 650px;
+    padding: 50px;
+    font-size: 1.5em;
+    color: black;
+}
+
+.badge::after {
+    content: "";
+    background-image: url('/assets/SOLIDAYS_2017.jpg');
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+
+    border: 2px solid lightgrey;
+    border-radius: 20px;
+}
+
+.photoWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.photo {
+    max-height: 200px;
+    max-width: 200px;
+}
+
+.profileText {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    height: 100px;
+}
+
+.row {
+    display: flex;
+    flex: 1;
+}
+
+.label, .value {
+    display: flex;
+    align-items: center;
+}
+
+.label {
+    flex: 0 1 50%;
+}
+
+.value {
+    flex: 1;
+    font-weight: bold;
+}

@@ -1,7 +1,6 @@
 import { Action, Reducer } from 'redux';
 
 import { FilterState } from '../index';
-import { BossChoices } from '../../containers/filter/boss-choices';
 import { FILTER_ACTION } from './filter.actions';
 import { ChoiceElement } from '../../components/choice-inline/choice-element';
 

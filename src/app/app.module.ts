@@ -3,10 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
 
 import { AppComponent } from './app.component';
+import { BadgeComponent } from './components/badge/badge.component';
 import { ChoiceInlineComponent } from './components/choice-inline/choice-inline.component';
+import { DisplayVolunteersContainer } from './containers/display-volunteers/display-volunteers.container';
 import { FilterContainer } from './containers/filter/filter.container';
+import { ListVolunteersContainer } from './containers/list-volunteers/list-volunteers.container';
 
 import { rootReducer, AppState, defaultState } from './store/index';
+import { DisplayVolunteersActions } from './store/display-volunteers/display-volunteers.actions';
 import { FilterActions } from './store/filter/filter.actions';
 
 import { VolunteerService } from './volunteer.service';
@@ -20,10 +24,13 @@ import { environment } from '../environments/environment'
     ],
   declarations: [
     AppComponent,
+    BadgeComponent,
     ChoiceInlineComponent,
-    FilterContainer
+    DisplayVolunteersContainer,
+    FilterContainer,
+    ListVolunteersContainer
     ],
-  providers: [ FilterActions, VolunteerService],
+  providers: [ DisplayVolunteersActions, FilterActions, VolunteerService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {

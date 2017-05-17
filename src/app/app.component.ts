@@ -1,24 +1,13 @@
 import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
-import { Volunteer } from './volunteer';
-import { VolunteerService } from './volunteer.service';
-import { ChoiceElement } from './components/choice-inline/choice-element';
 
 @Component({
     selector: 'my-app',
     templateUrl: './app.component.html',
     styleUrls:  ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-    choices: ChoiceElement[];
-    volunteers: Volunteer[];
-
-    constructor(private volunteerService: VolunteerService) {
+    constructor() {
     }
 
-    ngOnInit(): void {
-        this.choices = [{'label': 'Choix 1'}, {'label': 'Choix 2'}];
-        this.volunteers = this.volunteerService.getVolunteers();
-    }
 }
