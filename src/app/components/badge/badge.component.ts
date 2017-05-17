@@ -9,7 +9,7 @@ import { Volunteer } from '../../volunteer';
 })
 export class BadgeComponent implements OnInit {
 
-    private volunteer: Volunteer;
+    public volunteer: Volunteer;
 
     constructor() {
     }

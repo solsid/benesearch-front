@@ -5,6 +5,7 @@ import { DisplayVolunteersActions } from '../../store/display-volunteers/display
 import { FilterState, AppState } from '../../store';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { DisplayModes } from './display-modes';
+import { displayVolunteersSelector } from '../../store/display-volunteers/display-volunteers.selectors';
 
 @Component({
     selector: 'display-volunteers',
@@ -15,7 +16,7 @@ import { DisplayModes } from './display-modes';
 export class DisplayVolunteersContainer implements OnInit, OnDestroy {
 
     public displayModesArray: ChoiceElement[];
-    @select((state: AppState) => state.displayVolunteersState.displayModes) public displayModesObservable: Observable<DisplayModes>;
+    @select(displayVolunteersSelector) public displayModesObservable: Observable<DisplayModes>;
     private displayModesSubscription: Subscription;
 
     public displayModesLabel: string;
