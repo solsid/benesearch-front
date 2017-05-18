@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
 
@@ -8,11 +9,13 @@ import { ChoiceInlineComponent } from './components/choice-inline/choice-inline.
 import { DisplayVolunteersContainer } from './containers/display-volunteers/display-volunteers.container';
 import { FilterContainer } from './containers/filter/filter.container';
 import { ListVolunteersContainer } from './containers/list-volunteers/list-volunteers.container';
+import { PhotoExportComponent } from './components/photo-export/photo-export.component';
 
 import { rootReducer, AppState, defaultState } from './store/index';
 import { DisplayVolunteersActions } from './store/display-volunteers/display-volunteers.actions';
 import { FilterActions } from './store/filter/filter.actions';
 
+import { PhotoExportService } from './services/photo-export/photo-export.service';
 import { VolunteerService } from './volunteer.service';
 
 import { environment } from '../environments/environment'
@@ -20,7 +23,8 @@ import { environment } from '../environments/environment'
 @NgModule({
   imports: [
     BrowserModule,
-    NgReduxModule
+    NgReduxModule,
+    HttpModule,
     ],
   declarations: [
     AppComponent,
@@ -28,9 +32,14 @@ import { environment } from '../environments/environment'
     ChoiceInlineComponent,
     DisplayVolunteersContainer,
     FilterContainer,
-    ListVolunteersContainer
+    ListVolunteersContainer,
+    PhotoExportComponent
     ],
-  providers: [ DisplayVolunteersActions, FilterActions, VolunteerService ],
+  providers: [
+    DisplayVolunteersActions,
+    FilterActions,
+    PhotoExportService,
+    VolunteerService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {
