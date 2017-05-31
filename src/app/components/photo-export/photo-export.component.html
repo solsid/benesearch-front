@@ -1,1 +1,13 @@
-<button type="button" (click)='exportAll()'>Exporter toutes les photos</button>
+<input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".csv">
+
+<br>
+<!-- <button type="button" (click)='exportWithoutPhoto()' style="display: block;">Bénévoles sans photos</button>
+<br> -->
+<div style="width: 100px; height: 100px;">
+    <img *ngIf="enabledExport && !enableExport" class="photo" src="/assets/spinner.gif" style="max-width: 100px; max-height: 100px;"/>
+</div>
+
+Exporter les photos de l'équipe:
+<button [disabled]="!enableExport" type="button" (click)='exportTeamPhotos(team)' *ngFor="let team of teams" style="display: block;">{{ team }}</button>
+
+<!-- <button type="button" (click)='exportAll()'>Exporter toutes les photos</button> -->
