@@ -1,7 +1,7 @@
 <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".csv">
 
 <br>
-<!-- <button type="button" (click)='exportWithoutPhoto()' style="display: block;">Bénévoles sans photos</button>
+<!--<button type="button" (click)='exportWithoutPhoto()' style="display: block;">Bénévoles sans photos</button>
 <br> -->
 <div style="width: 100px; height: 100px;">
     <img *ngIf="enabledExport && !enableExport" class="photo" src="/assets/spinner.gif" style="max-width: 100px; max-height: 100px;"/>
