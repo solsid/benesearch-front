@@ -8,7 +8,8 @@ import { saveAs } from 'file-saver';
 })
 export class PhotoExportComponent {
 
-    public teams: string[] = [
+    public teams: string[];
+    /*public teams: string[] = [
         "Accessibilité",
         "Appro Boissons - Gratuités",
         "Artistique - Accueil Nuit",
@@ -58,7 +59,7 @@ export class PhotoExportComponent {
         "Studio Radio",
         "Tirelire - La Cavalerie",
         "Vigie",
-        "Village Solidarité"];
+        "Village Solidarité"];*/
 
     public enabledExport: boolean = false;
     public enableExport: boolean = false;
@@ -82,7 +83,13 @@ export class PhotoExportComponent {
         if(fileList.length > 0) {
             this.file = fileList[0];
         }
-        this.enableExportAction();
+
+        this.photoExportService.getAllTeams(this.file).subscribe(
+                res => {
+                    this.teams = res.teams;
+                    this.enableExportAction();
+                }
+        );
     }
 
     public exportAllPhotos = () => {
@@ -91,7 +98,12 @@ export class PhotoExportComponent {
                 const blob = new Blob([res], { type: 'application/octet-stream' });
                 saveAs(blob, 'toutes_photos_export.zip');
                 this.enableExportAction();
-            }
+            },
+                err => {
+                    // Log errors if any
+                    console.log(err);
+                    this.enableExportAction();
+                }
         );
         this.disableExportAction();
     }
@@ -122,7 +134,12 @@ export class PhotoExportComponent {
                 const blob = new Blob([res], { type: 'application/octet-stream' });
                 saveAs(blob, 'photos_' + team + '_export.zip');
                 this.enableExportAction();
-            }
+            },
+                err => {
+                    // Log errors if any
+                    console.log(err);
+                    this.enableExportAction();
+                }
         );
         this.disableExportAction();
     }
@@ -132,7 +149,12 @@ export class PhotoExportComponent {
                 res => {
                 const blob = new Blob([res], { type: 'application/octet-stream' });
                 saveAs(blob, 'sans_photo_export.zip');
-            }
+            },
+                err => {
+                    // Log errors if any
+                    console.log(err);
+                    this.enableExportAction();
+                }
             );
     }
 

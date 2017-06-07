@@ -34,6 +34,20 @@ export class PhotoExportService {
     //    .map(res => res.json());
   }
 
+  public getAllTeams(file: File) {
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+    /*const headers = new Headers({
+        'Accept': 'application/zip'
+      });
+    const options = new RequestOptions({
+        headers: headers,
+        responseType: ResponseContentType.Blob
+      });*/
+    return this.http.post('https://benesearch.herokuapp.com/getAllTeams', formData/*, options*/)
+          .map(res => res.json());
+  }
+
   public exportAllPhotos = (file: File) => {
     const formData:FormData = new FormData();
     formData.append('file', file, file.name);
