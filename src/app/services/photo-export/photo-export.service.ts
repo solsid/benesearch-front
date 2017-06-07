@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, ResponseContentType } from '@angular/http';
+import {Observable} from 'rxjs/Rx';
 
 @Injectable()
 export class PhotoExportService {
@@ -31,6 +32,38 @@ export class PhotoExportService {
     const options = new RequestOptions({ headers: headers });
     return this.http.post('https://benesearch.herokuapp.com/upload', formData, options);
     //    .map(res => res.json());
+  }
+
+  public exportAllPhotos = (file: File) => {
+    const formData:FormData = new FormData();
+    formData.append('file', file, file.name);
+    const headers = new Headers({
+        'Accept': 'application/zip'
+      });
+    //headers.append('Content-Type', 'multipart/form-data');
+    const options = new RequestOptions({
+        headers: headers,
+        responseType: ResponseContentType.Blob
+      });
+    return this.http.post('https://benesearch.herokuapp.com/exportAllPhotos', formData, options)
+          .map(res => res['_body']);
+  }
+
+  public exportPhotosByHundred = (file : File, part: number) => {
+    const formData:FormData = new FormData();
+    formData.append('file', file, file.name);
+    formData.append('part', part);
+    const headers = new Headers({
+        'Accept': 'application/zip'
+      });
+    //headers.append('Content-Type', 'multipart/form-data');
+    const options = new RequestOptions({
+        headers: headers,
+        responseType: ResponseContentType.Blob
+      });
+    return this.http.post('https://benesearch.herokuapp.com/exportPhotosByHundred', formData, options)
+          .map(res => res['_body'])
+          .catch((error: any) => Observable.throw('Server error'));
   }
 
   public exportTeamPhotos = (file: File, team: string) => {

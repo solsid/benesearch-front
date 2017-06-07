@@ -7,6 +7,9 @@
     <img *ngIf="enabledExport && !enableExport" class="photo" src="/assets/spinner.gif" style="max-width: 100px; max-height: 100px;"/>
 </div>
 
+Exporter toutes les photos (par centaine):
+<button [disabled]="!enableExport" type="button" (click)='exportPhotosByHundred(1)' style="display: block;">Exporter</button>
+<br><br><br><br><br><br>
 Exporter les photos de l'équipe:
 <button [disabled]="!enableExport" type="button" (click)='exportTeamPhotos(team)' *ngFor="let team of teams" style="display: block;">{{ team }}</button>
 

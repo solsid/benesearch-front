@@ -85,6 +85,37 @@ export class PhotoExportComponent {
         this.enableExportAction();
     }
 
+    public exportAllPhotos = () => {
+        this.photoExportService.exportAllPhotos(this.file).subscribe(
+                res => {
+                const blob = new Blob([res], { type: 'application/octet-stream' });
+                saveAs(blob, 'toutes_photos_export.zip');
+                this.enableExportAction();
+            }
+        );
+        this.disableExportAction();
+    }
+
+    public exportPhotosByHundred = (part: number) => {
+        if (part === undefined || part == null || part === 1) {
+            this.disableExportAction();
+            part = 1;
+        }
+        this.photoExportService.exportPhotosByHundred(this.file, part).subscribe(
+                res => {
+                    const blob = new Blob([res], { type: 'application/octet-stream' });
+                    saveAs(blob, 'photos_export_partie_' + part + '.zip');
+                    part++;
+                    this.exportPhotosByHundred(part);
+                },
+                err => {
+                    // Log errors if any
+                    console.log(err);
+                    this.enableExportAction();
+                }
+        );
+    }
+
     public exportTeamPhotos = (team: string) => {
         this.photoExportService.exportTeamPhotos(this.file, team).subscribe(
                 res => {
