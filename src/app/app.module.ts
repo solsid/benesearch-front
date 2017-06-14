@@ -8,6 +8,7 @@ import { appRoutes } from './app.routes';
 
 import { AppComponent } from './app.component';
 import { BadgeComponent } from './components/badge/badge.component';
+import { BadgesContainer } from './containers/badges/badges.container';
 import { ChoiceInlineComponent } from './components/choice-inline/choice-inline.component';
 import { DisplayVolunteersContainer } from './containers/display-volunteers/display-volunteers.container';
 import { FilterContainer } from './containers/filter/filter.container';
@@ -20,6 +21,7 @@ import { rootReducer, AppState, defaultState } from './store/index';
 import { DisplayVolunteersActions } from './store/display-volunteers/display-volunteers.actions';
 import { FilterActions } from './store/filter/filter.actions';
 
+import { BadgesService } from './services/badges.service';
 import { PhotoExportService } from './services/photo-export/photo-export.service';
 import { VolunteerService } from './volunteer.service';
 
@@ -35,6 +37,7 @@ import { environment } from '../environments/environment'
   declarations: [
     AppComponent,
     BadgeComponent,
+    BadgesContainer,
     ChoiceInlineComponent,
     DisplayVolunteersContainer,
     FilterContainer,
@@ -46,6 +49,7 @@ import { environment } from '../environments/environment'
   providers: [
     DisplayVolunteersActions,
     FilterActions,
+    BadgesService,
     PhotoExportService,
     VolunteerService ],
   bootstrap: [ AppComponent ]

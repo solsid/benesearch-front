@@ -1,0 +1,13 @@
+<p>Bénévoles (.csv)</p>
+<input type="file" (change)="volunteersFileChange($event)" placeholder="Bénévoles" accept=".csv">
+<p>Matrice des droits d'accès (.xls)</p>
+<input type="file" (change)="accessRightsFileChange($event)" placeholder="Matrice des droits d'accès" accept=".xls">
+
+<br>
+<div style="width: 100px; height: 100px;">
+    <img *ngIf="loading" class="photo" src="/assets/spinner.gif" style="max-width: 100px; max-height: 100px;"/>
+</div>
+
+<badge [volunteer]="volunteer" (onPrevious)="previous()" (onNext)="next()"></badge>
+
+<!--<div>{{ volunteers | json }}</div>-->

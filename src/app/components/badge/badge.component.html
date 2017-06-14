@@ -1,10 +1,15 @@
 <div class="badge">
     <div class="photoWrapper">
-        <img class="photo" src="http://images.clipartpanda.com/college-student-silhouette-silhouette.gif"/>
+        <img *ngIf="volunteer" class="photo" src="http://www.benebox.org/offres/image_inline_src/594/594_annuaire_{{ volunteer?.volunteer.id }}_L.jpg"/>
+        <img *ngIf="!volunteer" class="photo" src="http://images.clipartpanda.com/college-student-silhouette-silhouette.gif"/>
     </div>
     <div class="profileText">
-        <div class="row"><div class="label">Nom:</div><div class="value">{{ volunteer.name }}</div></div>
-        <div class="row"><div class="label">Equipe:</div><div class="value">{{ volunteer.team }}</div></div>
-        <div class="row"><div class="label">Autorisations:</div><div class="value">{{ volunteer.rights }}</div></div>
+        <div class="row"><div class="label">Nom:</div><div class="value">{{ volunteer?.volunteer.lastName }} {{ volunteer?.volunteer.firstName }}</div></div>
+        <div class="row"><div class="label">Equipe:</div><div class="value">{{ volunteer?.volunteer.assignment.team }}</div></div>
+        <div class="row"><div class="label">Autorisations:</div><div class="value">{{ volunteer?.accessRights }}</div></div>
     </div>
+</div>
+<div>
+    <button type="button" (click)='previous()' style="display: block;">Précédent</button>
+    <button type="button" (click)='next()' style="display: block;">Suivant</button>
 </div>

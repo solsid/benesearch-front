@@ -4,22 +4,23 @@ import { Volunteer } from '../../volunteer';
 @Component({
     selector: 'badge',
     templateUrl: './badge.component.html',
-    styleUrls:  ['./badge.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    styleUrls:  ['./badge.component.css']/*,
+    changeDetection: ChangeDetectionStrategy.OnPush*/
 })
-export class BadgeComponent implements OnInit {
+export class BadgeComponent {
 
-    public volunteer: Volunteer;
+    @Input() volunteer: any;
+    @Output() onPrevious = new EventEmitter<any>();
+    @Output() onNext = new EventEmitter<any>();
 
     constructor() {
     }
 
-    ngOnInit(): void {
-        this.volunteer = {
-            name: 'Jean DUPONT',
-            team: 'Backline',
-            rights: 'P M'
-        };
+    public previous = () => {
+        this.onPrevious.emit(null);
     }
 
+    public next = () => {
+        this.onNext.emit(null);
+    }
 }
