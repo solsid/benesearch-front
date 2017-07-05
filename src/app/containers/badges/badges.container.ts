@@ -105,7 +105,7 @@ export class BadgesContainer {
         }
     }
 
-    private action = () => {
+    action = () => {
         if (this.formComplete()) {
             this.getVolunteersWithAccessRights();
             this.generateBadgeDatabaseInputFile();
