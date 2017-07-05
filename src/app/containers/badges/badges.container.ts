@@ -12,50 +12,83 @@ export class BadgesContainer {
     public volunteer: any;
     public volunteerIndex = 0;
 
-    public loading: boolean = false;
+    public loadingVolunteers: boolean = false;
+    public loadingFile: boolean = false;
 
     private volunteersFile: File = null;
-    private accessRightsFile: File = null;
+    private teamLeadersFile: File = null;
+    private nonLeaderAccessRightsFile: File = null;
+    private leaderAccessRightsFile: File = null;
 
     constructor(private badgesService: BadgesService) {
     }
 
-    public volunteersFileChange = (event) => {
+    volunteersFileChange = (event) => {
         let fileList: FileList = event.target.files;
-        if(fileList.length > 0) {
+        if (fileList.length > 0) {
             this.volunteersFile = fileList[0];
         }
-
-        if (this.volunteersFile != null && this.accessRightsFile != null) {
-            this.getVolunteersWithAccessRights();
-        }
     }
 
-    public accessRightsFileChange = (event) => {
+    teamLeadersFileChange = (event) => {
         let fileList: FileList = event.target.files;
-        if(fileList.length > 0) {
-            this.accessRightsFile = fileList[0];
-        }
-
-        if (this.volunteersFile != null && this.accessRightsFile != null) {
-            this.getVolunteersWithAccessRights();
+        if (fileList.length > 0) {
+            this.teamLeadersFile = fileList[0];
         }
     }
 
-    public getVolunteersWithAccessRights = () => {
-        this.badgesService.getVolunteersWithAccessRights(this.volunteersFile, this.accessRightsFile).subscribe(
-            res => {
-                this.volunteers = res;
-                this.volunteer = res[0];
-                this.loading = false;
-            },
-            err => {
-                // Log errors if any
-                console.log(err);
-                this.loading = false;
-            }
-        );
-        this.loading = true;
+    nonLeaderAccessRightsFileChange = (event) => {
+        let fileList: FileList = event.target.files;
+        if (fileList.length > 0) {
+            this.nonLeaderAccessRightsFile = fileList[0];
+        }
+    }
+
+    leaderAccessRightsFileChange = (event) => {
+        let fileList: FileList = event.target.files;
+        if (fileList.length > 0) {
+            this.leaderAccessRightsFile = fileList[0];
+        }
+    }
+
+    getVolunteersWithAccessRights = () => {
+        this.badgesService.getVolunteersWithAccessRights(
+            this.volunteersFile,
+            this.teamLeadersFile,
+            this.nonLeaderAccessRightsFile,
+            this.leaderAccessRightsFile).subscribe(
+                res => {
+                    this.volunteers = res;
+                    this.volunteer = res[0];
+                    this.loadingVolunteers = false;
+                },
+                err => {
+                    // Log errors if any
+                    console.log(err);
+                    this.loadingVolunteers = false;
+                }
+            );
+        this.loadingVolunteers = true;
+    }
+
+    generateBadgeDatabaseInputFile = () => {
+        this.badgesService.generateBadgeDatabaseInputFile(
+            this.volunteersFile,
+            this.teamLeadersFile,
+            this.nonLeaderAccessRightsFile,
+            this.leaderAccessRightsFile).subscribe(
+                res => {
+                    const blob = new Blob([res], { type: 'application/octet-stream' });
+                    saveAs(blob, 'badge_database_input_file.zip');
+                    this.loadingFile = false;
+                },
+                err => {
+                    // Log errors if any
+                    console.log(err);
+                    this.loadingFile = false;
+                }
+            );
+        this.loadingFile = true;
     }
 
     previous = () => {
@@ -70,5 +103,16 @@ export class BadgesContainer {
             this.volunteerIndex++;
             this.volunteer = this.volunteers[this.volunteerIndex];
         }
+    }
+
+    private action = () => {
+        if (this.formComplete()) {
+            this.getVolunteersWithAccessRights();
+            this.generateBadgeDatabaseInputFile();
+        }
+    }
+
+    private formComplete = () => {
+        return this.volunteersFile != null && (this.nonLeaderAccessRightsFile != null || this.leaderAccessRightsFile != null);
     }
 }

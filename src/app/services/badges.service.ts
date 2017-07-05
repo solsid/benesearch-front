@@ -9,11 +9,39 @@ export class BadgesService {
     private http: Http
   ) {}
 
-  public getVolunteersWithAccessRights(volunteersFile: File, accessRightsFile: File) {
-    const formData: FormData = new FormData();
-    formData.append('volunteersFile', volunteersFile, volunteersFile.name);
-    formData.append('accessRightsMatrixFile', accessRightsFile, accessRightsFile.name);
-    return this.http.post('https://benesearch.herokuapp.com/getVolunteersWithAccessRights', formData)
-          .map(res => res.json());
+  getVolunteersWithAccessRights(
+    volunteers: File,
+    teamLeaders: File,
+    nonTeamLeadersAccessRights: File,
+    teamLeadersAccessRights: File) {
+      const formData: FormData = new FormData();
+      formData.append('volunteers', volunteers, volunteers.name);
+      formData.append('teamLeaders', teamLeaders, teamLeaders.name);
+      formData.append('nonTeamLeadersAccessRights', nonTeamLeadersAccessRights, nonTeamLeadersAccessRights.name);
+      formData.append('teamLeadersAccessRights', teamLeadersAccessRights, teamLeadersAccessRights.name);
+      return this.http.post('https://benesearch.herokuapp.com/getVolunteersWithAccessRights', formData)
+            .map(res => res.json());
+  }
+
+  generateBadgeDatabaseInputFile = (
+    volunteers: File,
+    teamLeaders: File,
+    nonTeamLeadersAccessRights: File,
+    teamLeadersAccessRights: File) => {
+      const formData:FormData = new FormData();
+      formData.append('volunteers', volunteers, volunteers.name);
+      formData.append('teamLeaders', teamLeaders, teamLeaders.name);
+      formData.append('nonTeamLeadersAccessRights', nonTeamLeadersAccessRights, nonTeamLeadersAccessRights.name);
+      formData.append('teamLeadersAccessRights', teamLeadersAccessRights, teamLeadersAccessRights.name);
+      const headers = new Headers({
+          'Accept': 'application/zip'
+        });
+      const options = new RequestOptions({
+          headers: headers,
+          responseType: ResponseContentType.Blob
+        });
+      return this.http.post('https://benesearch.herokuapp.com/badgeDatabase/inputFile/generate', formData, options)
+            .map(res => res['_body'])
+            .catch((error: any) => Observable.throw('Server error'));
   }
 }
