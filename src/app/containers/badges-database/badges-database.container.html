@@ -7,13 +7,9 @@
 <p>Matrice des droits d'accès des Chefs d'Equipe(.xls)</p>
 <input type="file" (change)="leaderAccessRightsFileChange($event)" placeholder="Matrice des droits d'accès des Chefs d'Equipe" accept=".xls, .xlsx">
 
-<button [disabled]="loadingVolunteers" type="button" (click)='action()'>GO</button>
+<button [disabled]="loadingVolunteers || loadingFile" type="button" (click)='action()'>GO</button>
 
 <br>
 <div style="width: 100px; height: 100px;">
-    <img *ngIf="loadingVolunteers" class="photo" src="/assets/spinner.gif" style="max-width: 100px; max-height: 100px;"/>
+    <img *ngIf="loadingVolunteers || loadingFile" class="photo" src="/assets/spinner.gif" style="max-width: 100px; max-height: 100px;"/>
 </div>
-
-<badge [volunteer]="volunteer" (onPrevious)="previous()" (onNext)="next()"></badge>
-
-<!--<div>{{ volunteers | json }}</div>-->

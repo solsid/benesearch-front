@@ -9,11 +9,14 @@ import { appRoutes } from './app.routes';
 import { AppComponent } from './app.component';
 import { BadgeComponent } from './components/badge/badge.component';
 import { BadgesContainer } from './containers/badges/badges.container';
+import { BadgesDatabaseContainer } from './containers/badges-database/badges-database.container';
 import { ChoiceInlineComponent } from './components/choice-inline/choice-inline.component';
 import { DisplayVolunteersContainer } from './containers/display-volunteers/display-volunteers.container';
+import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
 import { FilterContainer } from './containers/filter/filter.container';
 import { ListVolunteersContainer } from './containers/list-volunteers/list-volunteers.container';
 import { PhotoExportContainer } from './containers/photo-export/photo-export.container';
+import { ToolTipComponent } from './components/tool-tip/tool-tip.component';
 import { VolunteersContainer } from './containers/volunteers/volunteers.container';
 import { PhotoExportComponent } from './components/photo-export/photo-export.component';
 
@@ -38,12 +41,15 @@ import { environment } from '../environments/environment'
     AppComponent,
     BadgeComponent,
     BadgesContainer,
+    BadgesDatabaseContainer,
     ChoiceInlineComponent,
     DisplayVolunteersContainer,
+    FileUploaderComponent,
     FilterContainer,
     ListVolunteersContainer,
     PhotoExportComponent,
     PhotoExportContainer,
+    ToolTipComponent,
     VolunteersContainer
     ],
   providers: [

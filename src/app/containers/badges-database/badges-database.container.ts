@@ -3,16 +3,15 @@ import { BadgesService } from '../../services/badges.service';
 import { saveAs } from 'file-saver';
 
 @Component({
-    selector: 'badges',
-    templateUrl: './badges.container.html',
+    selector: 'badges-database',
+    templateUrl: './badges-database.container.html',
 })
-export class BadgesContainer {
+export class BadgesDatabaseContainer {
 
     public volunteers: any;
-    public volunteer: any;
-    public volunteerIndex = 0;
 
     public loadingVolunteers: boolean = false;
+    public loadingFile: boolean = false;
 
     private volunteersFile: File = null;
     private teamLeadersFile: File = null;
@@ -50,43 +49,29 @@ export class BadgesContainer {
         }
     }
 
-    getVolunteersWithAccessRights = () => {
-        this.badgesService.getVolunteersWithAccessRights(
+    generateBadgeDatabaseInputFile = () => {
+        this.badgesService.generateBadgeDatabaseInputFile(
             this.volunteersFile,
             this.teamLeadersFile,
             this.nonLeaderAccessRightsFile,
             this.leaderAccessRightsFile).subscribe(
                 res => {
-                    this.volunteers = res;
-                    this.volunteer = res[0];
-                    this.loadingVolunteers = false;
+                    const blob = new Blob([res], { type: 'application/octet-stream' });
+                    saveAs(blob, 'badge_database_input_file.zip');
+                    this.loadingFile = false;
                 },
                 err => {
                     // Log errors if any
                     console.log(err);
-                    this.loadingVolunteers = false;
+                    this.loadingFile = false;
                 }
             );
-        this.loadingVolunteers = true;
-    }
-
-    previous = () => {
-        if (this.volunteerIndex > 0) {
-            this.volunteerIndex--;
-            this.volunteer = this.volunteers[this.volunteerIndex];
-        }
-    }
-
-    next = () => {
-        if (this.volunteerIndex < (this.volunteers.length - 1)) {
-            this.volunteerIndex++;
-            this.volunteer = this.volunteers[this.volunteerIndex];
-        }
+        this.loadingFile = true;
     }
 
     action = () => {
         if (this.formComplete()) {
-            this.getVolunteersWithAccessRights();
+            this.generateBadgeDatabaseInputFile();
         }
     }
 

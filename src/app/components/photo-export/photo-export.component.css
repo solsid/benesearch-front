@@ -1,0 +1,42 @@
+.grid {
+    max-width: 1200px;
+}
+
+.grid .grid-card {
+    float: left;
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+}
+
+.grid .grid-card img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.grid .grid-card span {
+    display: block;
+}
+
+.missingPhotos {
+    font-size: 0.75em;
+}
+
+.spinner-wrapper {
+    width: 100px;
+    height: 100px;
+}
+
+.spinner {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.downloadButtonWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.tooltip {
+    padding-left: 10px;
+}

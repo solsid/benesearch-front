@@ -1,0 +1,45 @@
+.icon {
+  height: 22px;
+}
+.messageBox {
+  /*padding: 20px;
+  text-align: justify;
+  border: 1px solid grey;*/
+}
+
+
+.wrapper {
+  position: relative;
+  display: inline;
+}
+.messageBox {
+  position: absolute;
+  width:500px;
+  height: 100px;
+  color: #FFFFFF;
+  background: #000000;
+  line-height: 30px;
+  text-align: center;
+  visibility: hidden;
+  border-radius: 6px;
+}
+.messageBox:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -8px;
+  width: 0; height: 0;
+  border-right: 8px solid #000000;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+.wrapper:hover .messageBox {
+  visibility: visible;
+  opacity: 0.8;
+  left: 100%;
+  top: 50%;
+  margin-top: -55px;
+  margin-left: 15px;
+  z-index: 999;
+}

@@ -5,11 +5,13 @@ import { saveAs } from 'file-saver';
 @Component({
     selector: 'photo-export',
     templateUrl: './photo-export.component.html',
+    styleUrls:  ['./photo-export.component.css']
 })
 export class PhotoExportComponent {
 
+    public downloadToolTipMessage = 'Le téléchargement de l\'intégralité des photos des bénévoles peut prendre plusieurs minutes. Il se fera en plusieurs parties, chaque partie comporte les photos de 100 bénévoles.';
     public teams: string[];
-
+    public missingPhotos = {'Accessibilité': 0, 'Appro Boissons - Gratuités': 2, 'Artistique - Régie Village': 1, 'Camping': 3};
     public enabledExport: boolean = false;
     public enableExport: boolean = false;
 
@@ -115,4 +117,5 @@ export class PhotoExportComponent {
     private disableExportAction = () => {
         this.enableExport = false;
     }
+
 }

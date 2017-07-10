@@ -1,16 +1,29 @@
-<input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".csv">
+<h1>Télécharger les photos des bénévoles</h1>
 
-<br>
-<!--<button type="button" (click)='exportWithoutPhoto()' style="display: block;">Bénévoles sans photos</button>
-<br> -->
-<div style="width: 100px; height: 100px;">
-    <img *ngIf="enabledExport && !enableExport" class="photo" src="/assets/spinner.gif" style="max-width: 100px; max-height: 100px;"/>
+<div class="step">
+    <h2>1. Uploader la liste des bénévoles</h2>
+    <file-uploader [accept]="'.csv'" (inputChange)="fileChange($event)"></file-uploader>
 </div>
 
-Exporter toutes les photos (par centaine):
-<button [disabled]="!enableExport" type="button" (click)='exportPhotosByHundred(1)' style="display: block;">Exporter</button>
-<br><br><br><br><br><br>
-Exporter les photos de l'équipe:
-<button [disabled]="!enableExport" type="button" (click)='exportTeamPhotos(team)' *ngFor="let team of teams" style="display: block;">{{ team }}</button>
+<div class="step">
+    <h2>2. Télécharger les photos</h2>
 
-<!-- <button type="button" (click)='exportAll()'>Exporter toutes les photos</button> -->
+    <div class="spinnerWrapper">
+        <img *ngIf="enabledExport && !enableExport" class="spinner" src="/assets/spinner.gif"/>
+    </div>
+
+    <h3>Télécharger toutes les photos</h3>
+    <div class="downloadButtonWrapper">
+        <button class="bouton" [disabled]="!enableExport" (click)='exportPhotosByHundred(1)' style="display: block;">Télécharger</button>
+        <tool-tip class="tooltip" [severity]="'info'" [message]="downloadToolTipMessage"></tool-tip>
+    </div>
+
+    <h3>Télécharger les photos d'une équipe</h3>
+    <div class="grid">
+        <button class="bouton grid-card" [disabled]="!enableExport" (click)='exportTeamPhotos(team)' *ngFor="let team of teams">
+            <img src="/assets/images/team-icon.png"/>
+            <span class="team">{{ team }}</span>
+            <span *ngIf="missingPhotos[team] && missingPhotos[team] > 0" class="missingPhotos">{{ missingPhotos[team] }} {{ missingPhotos[team] == 1 ? 'photo manquante' : 'photos manquantes'}}</span>
+        </button>
+    </div>
+</div>
