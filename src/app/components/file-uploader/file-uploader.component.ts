@@ -10,10 +10,10 @@ import { EventEmitter, Component, Input, Output } from '@angular/core';
 })
 export class FileUploaderComponent {
 
-    @Input() accept: string = '*';
+    @Input() accept = '*';
     @Output() inputChange = new EventEmitter<any>();
 
-    public fileName: string = 'Choisissez un fichier...';
+    public fileName = 'Choisissez un fichier...';
 
     handleInputChange = (e) => {
        if ( e.target.value ) {

@@ -24,10 +24,10 @@ export class PhotoExportService {
   }
 
   public uploadFile = (file: File) => {
-    const formData:FormData = new FormData();
+    const formData: FormData = new FormData();
     formData.append('file', file, file.name);
     const headers = new Headers();
-    //headers.append('Content-Type', 'multipart/form-data');
+    // headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
     const options = new RequestOptions({ headers: headers });
     return this.http.post('https://benesearch.herokuapp.com/upload', formData, options);
@@ -49,12 +49,12 @@ export class PhotoExportService {
   }
 
   public exportAllPhotos = (file: File) => {
-    const formData:FormData = new FormData();
+    const formData: FormData = new FormData();
     formData.append('file', file, file.name);
     const headers = new Headers({
         'Accept': 'application/zip'
       });
-    //headers.append('Content-Type', 'multipart/form-data');
+    // headers.append('Content-Type', 'multipart/form-data');
     const options = new RequestOptions({
         headers: headers,
         responseType: ResponseContentType.Blob
@@ -63,14 +63,14 @@ export class PhotoExportService {
           .map(res => res['_body']);
   }
 
-  public exportPhotosByHundred = (file : File, part: number) => {
-    const formData:FormData = new FormData();
+  public exportPhotosByHundred = (file: File, part: number) => {
+    const formData: FormData = new FormData();
     formData.append('file', file, file.name);
-    formData.append('part', part);
+    formData.append('part', String(part));
     const headers = new Headers({
         'Accept': 'application/zip'
       });
-    //headers.append('Content-Type', 'multipart/form-data');
+    // headers.append('Content-Type', 'multipart/form-data');
     const options = new RequestOptions({
         headers: headers,
         responseType: ResponseContentType.Blob
@@ -81,13 +81,13 @@ export class PhotoExportService {
   }
 
   public exportTeamPhotos = (file: File, team: string) => {
-    const formData:FormData = new FormData();
+    const formData: FormData = new FormData();
     formData.append('file', file, file.name);
     formData.append('team', team);
     const headers = new Headers({
         'Accept': 'application/zip'
       });
-    //headers.append('Content-Type', 'multipart/form-data');
+    // headers.append('Content-Type', 'multipart/form-data');
     const options = new RequestOptions({
         headers: headers,
         responseType: ResponseContentType.Blob
@@ -97,12 +97,12 @@ export class PhotoExportService {
   }
 
   public exportWithoutPhoto = (file: File) => {
-        const formData:FormData = new FormData();
+        const formData: FormData = new FormData();
     formData.append('file', file, file.name);
     const headers = new Headers({
         'Accept': 'application/zip'
       });
-    //headers.append('Content-Type', 'multipart/form-data');
+    // headers.append('Content-Type', 'multipart/form-data');
     const options = new RequestOptions({
         headers: headers,
         responseType: ResponseContentType.Blob

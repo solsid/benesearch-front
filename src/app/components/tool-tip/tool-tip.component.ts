@@ -7,6 +7,6 @@ import { EventEmitter, Component, Input, Output } from '@angular/core';
 })
 export class ToolTipComponent {
 
-    @Input() severity: string = 'info';
-    @Input() message: string= '';
+    @Input() severity = 'info';
+    @Input() message = '';
 }

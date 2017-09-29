@@ -12,7 +12,7 @@ export class BadgesContainer {
     public volunteer: any;
     public volunteerIndex = 0;
 
-    public loadingVolunteers: boolean = false;
+    public loadingVolunteers = false;
 
     private volunteersFile: File = null;
     private teamLeadersFile: File = null;
@@ -23,28 +23,28 @@ export class BadgesContainer {
     }
 
     volunteersFileChange = (event) => {
-        let fileList: FileList = event.target.files;
+        const fileList: FileList = event.target.files;
         if (fileList.length > 0) {
             this.volunteersFile = fileList[0];
         }
     }
 
     teamLeadersFileChange = (event) => {
-        let fileList: FileList = event.target.files;
+        const fileList: FileList = event.target.files;
         if (fileList.length > 0) {
             this.teamLeadersFile = fileList[0];
         }
     }
 
     nonLeaderAccessRightsFileChange = (event) => {
-        let fileList: FileList = event.target.files;
+        const fileList: FileList = event.target.files;
         if (fileList.length > 0) {
             this.nonLeaderAccessRightsFile = fileList[0];
         }
     }
 
     leaderAccessRightsFileChange = (event) => {
-        let fileList: FileList = event.target.files;
+        const fileList: FileList = event.target.files;
         if (fileList.length > 0) {
             this.leaderAccessRightsFile = fileList[0];
         }

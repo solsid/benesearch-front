@@ -9,11 +9,13 @@ import { saveAs } from 'file-saver';
 })
 export class PhotoExportComponent {
 
-    public downloadToolTipMessage = 'Le téléchargement de l\'intégralité des photos des bénévoles peut prendre plusieurs minutes. Il se fera en plusieurs parties, chaque partie comporte les photos de 100 bénévoles.';
+    public downloadToolTipMessage = 'Le téléchargement de l\'intégralité'
+    + ' des photos des bénévoles peut prendre plusieurs minutes.'
+    + ' Il se fera en plusieurs parties, chaque partie comporte les photos de 100 bénévoles.';
     public teams: string[];
     public missingPhotos = {'Accessibilité': 0, 'Appro Boissons - Gratuités': 2, 'Artistique - Régie Village': 1, 'Camping': 3};
-    public enabledExport: boolean = false;
-    public enableExport: boolean = false;
+    public enabledExport = false;
+    public enableExport = false;
 
     private file: File;
 
@@ -30,8 +32,8 @@ export class PhotoExportComponent {
     }
 
     public fileChange = (event) => {
-        let fileList: FileList = event.target.files;
-        if(fileList.length > 0) {
+        const fileList: FileList = event.target.files;
+        if (fileList.length > 0) {
             this.file = fileList[0];
         }
 

@@ -10,8 +10,8 @@ export class BadgesDatabaseContainer {
 
     public volunteers: any;
 
-    public loadingVolunteers: boolean = false;
-    public loadingFile: boolean = false;
+    public loadingVolunteers = false;
+    public loadingFile = false;
 
     private volunteersFile: File = null;
     private teamLeadersFile: File = null;
@@ -22,28 +22,28 @@ export class BadgesDatabaseContainer {
     }
 
     volunteersFileChange = (event) => {
-        let fileList: FileList = event.target.files;
+        const fileList: FileList = event.target.files;
         if (fileList.length > 0) {
             this.volunteersFile = fileList[0];
         }
     }
 
     teamLeadersFileChange = (event) => {
-        let fileList: FileList = event.target.files;
+        const fileList: FileList = event.target.files;
         if (fileList.length > 0) {
             this.teamLeadersFile = fileList[0];
         }
     }
 
     nonLeaderAccessRightsFileChange = (event) => {
-        let fileList: FileList = event.target.files;
+        const fileList: FileList = event.target.files;
         if (fileList.length > 0) {
             this.nonLeaderAccessRightsFile = fileList[0];
         }
     }
 
     leaderAccessRightsFileChange = (event) => {
-        let fileList: FileList = event.target.files;
+        const fileList: FileList = event.target.files;
         if (fileList.length > 0) {
             this.leaderAccessRightsFile = fileList[0];
         }
