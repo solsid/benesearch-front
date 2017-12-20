@@ -13,7 +13,7 @@ export class PhotoExportComponent {
     + ' des photos des bénévoles peut prendre plusieurs minutes.'
     + ' Il se fera en plusieurs parties, chaque partie comporte les photos de 100 bénévoles.';
     public teams: string[];
-    public missingPhotos = {'Accessibilité': 0, 'Appro Boissons - Gratuités': 2, 'Artistique - Régie Village': 1, 'Camping': 3};
+    public missingPhotos = {'Accessibilité': 0, 'Appro Boissons - Gratuités': 0, 'Artistique - Régie Village': 0, 'Camping': 0};
     public enabledExport = false;
     public enableExport = false;
 
